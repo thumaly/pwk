@@ -1,0 +1,1322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Patch Check Advanced</title>
+<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body bgcolor="#ffffff">
+
+<table width="100%" cellpadding=5 cellspacing=0 border="0">
+
+<tr>        
+  <td colspan=2>
+    <table width="100%" bgcolor="#9999cc">
+    <tr>
+      <td width="15%" align=right valign=top>
+        <h1>PCA -</h1>
+      </td>
+      <td width="70%" align=left valign=top>
+        <h1>Patch Check Advanced</h1>
+        <i>Analyze, download and install patches for Oracle Solaris</i>
+      </td>
+      <td width="15%" align=right valign=top>
+        Written by<br>
+        <a href="mailto:martin.paul@univie.ac.at">Martin Paul<a><br><br>
+        News via <a href="news.rdf">RSS</a>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+
+<tr>
+  <td width="15%" valign=top>
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tr>
+      <td> 
+        <table width="100%" cellpadding=5>
+        <tr>
+          <td bgcolor="#ddddff">
+            <h3><a href="intro.html">Intro</a></h3>
+            <h3><a href="news.html">News</a></h3>
+            <h3><a href="installation.html">Installation</a></h3>
+            <h3>Usage</h3>
+            <h3><a href="changes.html">Changes</a></h3>
+            <h3><a href="lists.html">Lists</a></h3>
+            <h3><a href="notes.html">Notes</a></h3>
+            <h3><a href="contrib.html">Contrib</a></h3>
+            <h3><a href="links.html">Links</a></h3>
+            <h3><a href="donation.html">Donation</a></h3>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+
+  <td width="85%" valign=top>
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tr>
+      <td>
+        <table width="100%" cellpadding=5>
+        <tr>
+          <td bgcolor="#eeeeff">
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+<!--
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#sample_output">SAMPLE OUTPUT</a></li>
+	<li><a href="#options">OPTIONS</a></li>
+	<li><a href="#operands">OPERANDS</a></li>
+	<li><a href="#configuration">CONFIGURATION</a></li>
+	<li><a href="#patch_download_and_installation">PATCH DOWNLOAD AND INSTALLATION</a></li>
+	<li><a href="#support_levels">SUPPORT LEVELS</a></li>
+	<li><a href="#local_patch_server">LOCAL PATCH SERVER</a></li>
+	<li><a href="#unbundled_patches">UNBUNDLED PATCHES</a></li>
+	<li><a href="#creating_patch_reports_for_remote_machines">CREATING PATCH REPORTS FOR REMOTE MACHINES</a></li>
+	<li><a href="#live_upgrade">LIVE UPGRADE</a></li>
+	<li><a href="#zones">ZONES</a></li>
+	<li><a href="#threads">THREADS</a></li>
+	<li><a href="#update_pca">UPDATE PCA</a></li>
+	<li><a href="#jumpstart">JUMPSTART</a></li>
+	<li><a href="#examples">EXAMPLES</a></li>
+	<li><a href="#environment_variables">ENVIRONMENT VARIABLES</a></li>
+	<li><a href="#download_errors">DOWNLOAD ERRORS</a></li>
+	<li><a href="#exit_status">EXIT STATUS</a></li>
+	<li><a href="#authors">AUTHORS</a></li>
+	<li><a href="#mailing_lists">MAILING LISTS</a></li>
+	<li><a href="#see_also">SEE ALSO</a></li>
+</ul>
+-->
+<!-- INDEX END -->
+
+<p>
+</p>
+<h4><a name="name">NAME</a></h4>
+<p>PCA - analyze, download and install patches for Oracle Solaris</p>
+<p>
+</p>
+
+<h4><a name="synopsis">SYNOPSIS</a></h4>
+<p>pca [OPTION] .. [OPERAND] ..</p>
+<p>
+</p>
+
+<h4><a name="description">DESCRIPTION</a></h4>
+<p>PCA is a perl script which generates lists of installed and missing
+patches for Oracle Solaris systems and optionally downloads and installs
+patches. By default, if run without any option or operand, PCA
+shows a list of all patches which are not installed in their most recent
+revision.</p>
+<p>The output of the pkginfo, showrev and uname commands is used to gather
+information about the system. Oracle offers a patch cross-reference file
+called patchdiag.xref which contains information about all available patches.
+This file is downloaded by PCA automatically to /var/tmp/ and kept up-to-date.
+If the file
+exists and is not writable, PCA uses it and won't try to update it.</p>
+<p>
+</p>
+
+<h4><a name="sample_output">SAMPLE OUTPUT</a></h4>
+<p>Here's some sample output from <b>pca -l all</b>, which shows a list
+of all installed and missing patches:</p>
+<pre>
+  Using /var/tmp/patchdiag.xref from Feb/29/04
+  Host: myhost (SunOS 5.9/Generic_117171-09/sparc/sun4u)
+  List: all (7/2182)</pre>
+<pre>
+  Patch  IR   CR RSB Age Synopsis
+  ------ -- - -- --- --- --------------------------------------------------
+  112785 42 &lt; 43 RS-  18 X11 6.6.1: Xsun patch
+  112787 01 = 01 --- 999 X11 6.6.1: twm patch
+  112807 10 = 10 RS-   9 CDE 1.5: dtlogin patch
+  113039 -- &lt; 06 ---  76 SAN 4.4.1: Sun StorEdge Traffic Manager patch
+  113040 -- &lt; 08 R--  77 SAN 4.4.1: fctl/fp/fcp driver patch
+  113477 02 &gt; -- --- 999 NOT FOUND IN CROSS REFERENCE FILE!
+  117114 -- &lt; 02 ---   4 CDE 1.5: sdtwebclient patch</pre>
+<p>The header includes some general information about the patchdiag.xref
+file, the host (<b>Host:</b>) and the listed patches (<b>List:</b>). The numbers
+in parantheses are the number of listed patches and the sum of their ages
+in days; when listing missing patches, this is a rough indicator of the
+current patch state.</p>
+<p>The first column (<b>Patch</b>) contains the patch number, followed by the
+installed revision (<b>IR</b>) and the current revision
+(<b>CR</b>), with one of &lt;, &gt;, or = between
+them, which tells whether the installed patch revision is lower, equal or
+higher than the current revision of the patch. The <b>RSB</b> column lists
+the Recommended/Security/Bad flag of the patch. <b>Age</b> shows the
+number of days since the patch was released, and
+<b>Synopsis</b> shows a short description of the patch.</p>
+<p>On this system, revision 42 of patch 112785 is installed, but a newer
+revision (43) is available. This patch is marked Recommended/Security.
+Patch 112787 is installed in revision 01, which is the most
+recent revision of the patch.
+112807 is marked Recommended/Security, and it's up-to-date.</p>
+<p>Patches 113039, 113040 and 117114 are not installed
+at all, and 113040 is marked Recommended.</p>
+<p>113477 is installed, but not listed in the cross-reference file.
+New Solaris update releases often have patches pre-installed which
+are not yet listed in patchdiag.xref.</p>
+<p>Often one patch requires other patches to be installed before
+it can be installed. PCA resolves these dependencies,
+and lists patches in their correct order. This can be seen
+in the patch list when a greater patch number is shown
+before a lower one, or when a patch which is not marked R/S is shown
+on the list of missing R/S patches.</p>
+<p>
+</p>
+
+<h4><a name="options">OPTIONS</a></h4>
+<dl>
+<dt><strong><a name="item__2dl_2c__2d_2dlist">-l, --list</a></strong><br />
+</dt>
+<dd>
+List patches. See OPERANDS on how to specify which patches
+are listed.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dl_2c__2d_2dlisthtml">-L, --listhtml</a></strong><br />
+</dt>
+<dd>
+Like <b>-l</b>, but generates output in HTML format, including
+links to patch READMEs and downloads. If <b>patchurl</b> is set and
+points at a local patch proxy, the links in HTML output will point there,
+too.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dd_2c__2d_2ddownload">-d, --download</a></strong><br />
+</dt>
+<dd>
+Download patches. See OPERANDS on how to specify which patches
+are downloaded. Patches are placed in the current directory or
+in <b>patchdir</b>, if set. A My Oracle Support Account and a wget binary
+with SSL/HTTPS support are required.
+</dd>
+<p></p>
+<dt><strong><a name="item__2di_2c__2d_2dinstall">-i, --install</a></strong><br />
+</dt>
+<dd>
+Download and install patches. See OPERANDS on how to specify
+which patches are installed. Requires PCA to be run as root. Downloaded
+patches are removed after successful installation, unless <b>--download</b>
+is used, too.
+</dd>
+<p></p>
+<dt><strong><a name="item__2di_2c__2d_2dpretend">-I, --pretend</a></strong><br />
+</dt>
+<dd>
+Like <b>-i</b>, but only pretend to install patches. Can be used
+to find out if any of the patches require a reboot.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2dreadme">-r, --readme</a></strong><br />
+</dt>
+<dd>
+Display patch READMEs. See OPERANDS on how to specify
+which READMEs are displayed.
+The patch README is
+extracted from a previously downloaded patch file or downloaded
+directly from Oracle, which requires a My Oracle Support Account and a
+wget binary with SSL/HTTPS support.
+</dd>
+<p></p>
+<dt><strong><a name="item__2du_2c__2d_2dunzip">-u, --unzip</a></strong><br />
+</dt>
+<dd>
+Download and unzip patches. See OPERANDS on how to specify
+which patches are unzipped. Unzipped patch directories are placed
+in the current directory or in <b>patchdir</b>, if set. Downloaded
+patches are removed after successful unzip operation, unless <b>--download</b>
+is used, too. It is not necessary to unzip patches with this option
+before installing them. Instead, this can be used to peek into the
+contents of a patch zip file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dx_2c__2d_2dgetxref">-x, --getxref</a></strong><br />
+</dt>
+<dd>
+Download most recent patch cross-reference file.
+If the file does not exist or is older than 3 hours, PCA tries to
+download it on its own before anything else.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dx_2c__2d_2dxrefdir_3ddir">-X, --xrefdir=DIR</a></strong><br />
+</dt>
+<dd>
+Set location of the cross-reference file. The default is
+<b>/var/tmp</b> (in proxy mode, the default is the current directory).
+By default, patchdiag.xref is writable for all users. If the <b>xrefown</b>
+option is set, or the <b>xrefdir</b> option contains <b>/home</b>,
+the cross reference file will be
+writable by the current user only.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dy_2c__2d_2dnocheckxref">-y, --nocheckxref</a></strong><br />
+</dt>
+<dd>
+Do not check for updated patch cross-reference file. Use this option
+to maintain a global baseline patch set.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dxrefown">--xrefown</a></strong><br />
+</dt>
+<dd>
+If set, patchdiag.xref will be writable for the current
+user only.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dnocache">--nocache</a></strong><br />
+</dt>
+<dd>
+If a proxy is used to access the Internet, this option advises
+it to not cache patchdiag.xref. Useful if the proxy can't be trusted
+to always return an up-to-date version of the file.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dp_2c__2d_2dpatchdir_3ddir">-P, --patchdir=DIR</a></strong><br />
+</dt>
+<dd>
+Set directory to which patches are downloaded. The default is
+the current working directory.
+</dd>
+<p></p>
+<dt><strong><a name="item__2da_2c__2d_2daskauth">-a, --askauth</a></strong><br />
+</dt>
+<dd>
+Deprecated.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2duser_3duser">--user=USER</a></strong><br />
+</dt>
+<dd>
+Login name for My Oracle Support Account authentication.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dpasswd_3dpass">--passwd=PASS</a></strong><br />
+</dt>
+<dd>
+Password for My Oracle Support Account authentication.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dsupplevel">--supplevel</a></strong><br />
+</dt>
+<dd>
+Deprecated. Oracle broke the interface to query this information.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dpatchurl_3durl">--patchurl=URL</a></strong><br />
+</dt>
+<dd>
+PCA will download patches and READMEs from this URL. Multiple URLs
+separated by whitespace can be specified. Any URL starting with
+file:/, ftp://, http:// or https://, and absolute paths can be
+used. The default is the special keyword <b>oracle</b>, meaning the
+Oracle patch server. See LOCAL PATCH SERVER for more information.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dxrefurl_3durl">--xrefurl=URL</a></strong><br />
+</dt>
+<dd>
+PCA will download patchdiag.xref from this URL. Multiple URLs
+separated by whitespace can be specified. Any URL starting with
+file:/, ftp://, http:// or https://, and absolute paths can be
+used. The default is the special keyword <b>oracle</b>, meaning the
+Oracle patch server. See LOCAL PATCH SERVER for more information.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dstop_3did">--stop=ID</a></strong><br />
+</dt>
+<dd>
+Stop after patch ID. When the specified patch ID is reached during
+listing, downloading or installing patches all operations are stopped.
+The option will be ignored if the same patch ID is explicitly included
+in the OPERANDS.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dignore_3dwhat">--ignore=WHAT</a></strong><br />
+</dt>
+<dd>
+Ignore certain patches. The patch will not be listed, downloaded
+or installed. Specify a patch ID
+without revision (<b>123456</b>) to ignore any revision of patch 123456.
+Specify <b>123456-78</b> to ignore only revision 78 of patch 123456; newer
+revisions will not be ignored. Specify a search pattern like <b>JavaSE</b>
+to ignore patches whose synopsis matches the pattern.
+If an ignored patch is required by another patch, this patch might
+fail to install due to the missing patch dependency.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2drec_3did">--rec=ID</a></strong><br />
+</dt>
+<dd>
+Set Recommended flag on patch ID. Useful to add single patches
+to the set of recommended patches. The patch will be marked with a lowercase
+<b>r</b> in PCA's output.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dsec_3did">--sec=ID</a></strong><br />
+</dt>
+<dd>
+Set Security flag on patch ID. Useful to add single patches
+to the set of security patches. The patch will be marked with a lowercase
+<b>s</b> in PCA's output.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dp_2c__2d_2dpattern_3dregex">-p, --pattern=REGEX</a></strong><br />
+</dt>
+<dd>
+List only patches whose synopsis matches the search pattern
+REGEX. This can be a simple string like <b>mail</b> or a regular
+expression like <b>[kK]ernel</b>. If the pattern starts with a
+<b>!</b>, only patches which do not match the pattern are shown.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dn_2c__2d_2dnoreboot">-n, --noreboot</a></strong><br />
+</dt>
+<dd>
+Install only patches that don't require a reboot after
+installation.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dminage_3ddays">--minage=DAYS</a></strong><br />
+</dt>
+<dd>
+List only patches which are at least DAYS old.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dmaxage_3ddays">--maxage=DAYS</a></strong><br />
+</dt>
+<dd>
+List only patches which are at most DAYS old.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dnodep">--nodep</a></strong><br />
+</dt>
+<dd>
+Do not resolve patch dependencies.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dminimal">--minimal</a></strong><br />
+</dt>
+<dd>
+Use minimal (instead of latest) revision for recommended patches.
+In combination with the <b>missingr</b> patch group this can be used
+to check a system against the same set of patches as included in
+the <b>Recommended Patchset for Solaris</b>, containing the minimal
+revisions of all critical patches recommended to be installed
+proactively. In short, ``pca --minimal --install missingr'' should
+give the same result as installing the <b>Recommended Patchset for
+Solaris</b>. Use of <b>--minimal</b> with any other patch group than
+<b>missingr</b> might give unexpected results.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dsyslog_3dtype">--syslog=TYPE</a></strong><br />
+</dt>
+<dd>
+Syslog priority to log patch installs to. The default is
+<b>daemon.notice</b> which gets logged to <b>/var/adm/messages</b>. Specify
+facility and severity (e.g. <b>local7.info</b>) or a facility only
+(e.g. <b>local7</b>, the default severity is <b>notice</b>). Use <b>none</b> to
+disable logging to syslog.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dk_2c__2d_2dnobackup_3did">-k, --nobackup=ID</a></strong><br />
+</dt>
+<dd>
+Do not back up files to be patched for patch ID. This works by running
+patchadd with its <b>-d</b> option. Patches can not be backed out if this
+option is used. Specify a patch ID with or without a revision or the
+special ID <b>all</b> to not back up files for any patch.
+</dd>
+<p></p>
+<dt><strong><a name="item__2db_2c__2d_2dbackdir_3ddir">-B, --backdir=DIR</a></strong><br />
+</dt>
+<dd>
+Saves patch backout data to DIR. This works by running patchadd
+with its <b>-B</b> option.
+</dd>
+<p></p>
+<dt><strong><a name="item__2ds_2c__2d_2dsafe">-s, --safe</a></strong><br />
+</dt>
+<dd>
+Safe patch installation. Checks all files for local modifications
+before installing a patch. A patch will not be installed if files with
+local modifications would be overwritten.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dg_2c__2d_2dcurrentzone">-G, --currentzone</a></strong><br />
+</dt>
+<dd>
+Make patchadd modify packages in the current zone only. This
+works by running patchadd with its <b>-G</b> option. This option works
+on Solaris 10 or newer only.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dpatchadd_3dfile">--patchadd=FILE</a></strong><br />
+</dt>
+<dd>
+Path to an alternative patchadd command.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2dnoheader">-H, --noheader</a></strong><br />
+</dt>
+<dd>
+Don't display descriptive headers and other information, just one line
+per patch. Useful if re-using PCA's output in own scripts.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dformat_3dformat">--format=FORMAT</a></strong><br />
+</dt>
+<dd>
+Set output format to FORMAT. The default format is
+<b>%p %i %e %c %r%s%b %a %y</b>. Use <b>%p</b> for the patch number,
+<b>%i</b> for the installed revision, <b>%e</b> for information whether
+the installed revision is lower, equal or higher than the current revision
+(<b>%c</b>). Use <b>%r</b>, <b>%s</b> and <b>%b</b> for the Recommended,
+Security and Bad flag, <b>%a</b> for the age, <b>%d</b> for the release date,
+<b>%o</b> for OS and <b>%y</b> for the Synopsis. Use <b>%n</b> as a patch counter
+and <b>%t</b> for the total number of patches.
+Example: With the format string <b>%p-%c %y</b> PCA shows patches
+in the same format as smpatch. Use of this option in combination with
+<b>--listhtml</b> is unsupported.
+</dd>
+<p></p>
+<dt><strong><a name="item__2df_2c__2d_2dfromfiles_3ddir">-f, --fromfiles=DIR</a></strong><br />
+</dt>
+<dd>
+Read uname/showrev/pkginfo output from files in the specified
+directory, where DIR can also be a file name prefix. See
+CREATING PATCH REPORTS FOR REMOTE MACHINES for details.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2ddltries_3dnum">--dltries=NUM</a></strong><br />
+</dt>
+<dd>
+Try downloads from Oracle's download server NUM times. The
+default is 1. Can be raised to reduce failed patch downloads when
+Oracle's patch download server is unresponsive.
+</dd>
+<p></p>
+<dt><strong><a name="item__2df_2c__2d_2dforce">-F, --force</a></strong><br />
+</dt>
+<dd>
+Force local caching proxy to download patchdiag.xref, patches
+and patch READMEs from Oracle's download server, even if the file is already
+in the cache. Useful to download updated patch READMEs for bad
+patches.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dr_2c__2d_2droot_3ddir">-R, --root=DIR</a></strong><br />
+</dt>
+<dd>
+Set alternative root directory. This can be useful for Live Upgrade,
+to analyze patches in an alternate root environment or to point PCA at
+the mini-root of a jumpstart install server.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dwget_3dpath">--wget=PATH</a></strong><br />
+</dt>
+<dd>
+Path to the wget command. Specify the name of the wget binary or the
+directory containing the wget binary. When multiple wget binaries are
+found, the newest with the best protocol support is used.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dwgetproxy_3durl">--wgetproxy=URL</a></strong><br />
+</dt>
+<dd>
+Default proxy for wget.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dwgetopt_3dopt">--wgetopt=OPT</a></strong><br />
+</dt>
+<dd>
+Feed option OPT directly to wget as-is. Usually only needed for debug
+reasons and to work around local configuration issues. Leading
+<b>-/--</b> must be included and OPT must be quoted!
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dlogger_3dfile">--logger=FILE</a></strong><br />
+</dt>
+<dd>
+Path to (alternative) logger command.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dt_2c__2d_2dthreads_3dnum">-t, --threads=NUM</a></strong><br />
+</dt>
+<dd>
+Number of concurrent download threads.  See THREADS for details.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dupdate_3dtype">--update=TYPE</a></strong><br />
+</dt>
+<dd>
+Check for available updates for PCA itself. TYPE can be <b>never</b>, <b>check</b>,
+<b>now</b> or <b>auto</b>. See UPDATE PCA for more information.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dpcaurl_3durl">--pcaurl=URL</a></strong><br />
+</dt>
+<dd>
+Set the URL which is used by <b>update</b> to check for new versions of PCA.
+See UPDATE PCA for more information.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dssprot_3dprot">--ssprot=PROT</a></strong><br />
+</dt>
+<dd>
+Deprecated.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dsshost_3dhost">--sshost=HOST</a></strong><br />
+</dt>
+<dd>
+Deprecated.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dohost_3dhost">--ohost=HOST</a></strong><br />
+</dt>
+<dd>
+Use HOST as the hostname or IP address of the Oracle download server.
+The default is <b>getupdates.oracle.com</b>.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dnorootchk">--norootchk</a></strong><br />
+</dt>
+<dd>
+When using the <b>safe</b> or the <b>install</b> option, root permission is
+required to run pkgchk or patchadd. Use this option to skip
+the check, e.g. when using sudo or RBAC.
+</dd>
+<p></p>
+<dt><strong><a name="item__2d_2dcffile_3dfile">--cffile=FILE</a></strong><br />
+</dt>
+<dd>
+Read FILE as additional configuration file. Use <b>cffile=FILE</b> in a
+configuration file to include FILE.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv_2c__2d_2ddebug">-V, --debug</a></strong><br />
+</dt>
+<dd>
+Show debug output on stderr. This includes output generated by patchadd. When
+running in proxy mode, debug output will be written to the file
+/var/tmp/pca-proxy-debug.txt.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dh_2c__2d_2dhelp">-h, --help</a></strong><br />
+</dt>
+<dd>
+Print help on command line options.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dm_2c__2d_2dman">-m, --man</a></strong><br />
+</dt>
+<dd>
+Print manual page. This requires the Pod::Usage module.
+</dd>
+<p></p>
+<dt><strong><a name="item__2dv_2c__2d_2dversion">-v, --version</a></strong><br />
+</dt>
+<dd>
+Print version information.
+</dd>
+<p></p></dl>
+<p>If no option is specified, the <b>-l</b> option to list patches is used.</p>
+<p>
+</p>
+
+<h4><a name="operands">OPERANDS</a></h4>
+<p>The operands determine which patches are listed (<b>-l</b>),
+downloaded (<b>-d</b>), installed (<b>-i</b>) or whose READMEs
+are displayed (<b>-r</b>). Multiple operands
+can be specified. Supported operands
+are <b>patch group</b> (missing, installed, all, total, unbundled, bad),
+<b>patch ID</b> with or without revision
+(123456-78 or 123456), <b>patch file</b> (123456-78.zip) and
+<b>file name</b> (patchlist.txt).</p>
+<p>The patch groups can be used to specify all missing patches (<b>missing</b>),
+all installed patches (<b>installed</b>), both installed and missing patches
+(<b>all</b>), all patches listed in patchdiag.xref (<b>total</b>),
+patches not associated with a software package (<b>unbundled</b>)
+or installed patches which are marked Bad (<b>bad</b>).
+By adding <b>r</b>, <b>s</b> or <b>rs</b> to any of
+the patch groups, only patches from the patch group which are marked
+Recommended, Security or either Recommended or Security are specified.
+Examples are <b>missings</b> for all missing Security patches, or
+<b>allrs</b> for all Recommended/Security patches.
+Patch groups can be shortened by using the first letter of the patch
+group plus optional r/s/rs
+(e.g. <b>ms</b> for missings or <b>ars</b> for allrs).</p>
+<p>Patch IDs like <b>123456-78</b> or <b>123456</b> are used to specify
+single patches. If no revision (<b>-78</b>) is specified, patch dependencies
+will be resolved. If the name of a patch file like
+<b>123456-78.zip</b> is specified, it has the same effect as using
+<b>123456-78</b>. This can be useful to install a list of already
+downloaded patches with <b>pca -i *.zip</b>.</p>
+<p>If a <b>file name</b> is specified, the file is read and its
+contents are added to the list of operands line-by-line. A file
+can contain other file names. If the file name is equal to a valid
+patch group name it will not be read.</p>
+<p>The patch list can be limited to patches whose synopsis line contains
+a search pattern by using any patch group in combination with the
+<b>--pattern=REGEX</b> option.
+A command like <b>pca -p mail</b> shows any missing patch containing
+the <b>mail</b> keyword in its description.
+If the search pattern contains whitespace or special characters, enclose
+it in quotation marks:
+<b>pca -p Studio -l total</b> shows patches for all versions of
+Sun Studio. If the pattern starts with <b>!</b>, the patch list is
+limited to patches which do not match the pattern.</p>
+<p>If no operands are specified, the <b>missing</b> operand is used.</p>
+<p>
+</p>
+
+<h4><a name="configuration">CONFIGURATION</a></h4>
+<p>The behaviour of PCA can be configured by setting any option either
+in a configuration file, as an environment variable with the <b>PCA_</b>
+prefix or on the command line. See OPTIONS for a complete list; only
+the long names can be used in configuration files and for environment
+variables.</p>
+<p>At first, the configuration files are read. PCA reads <b>pca.conf</b>
+in the directory where PCA is installed, <b>../etc/pca.conf</b> of the
+directory where it is installed, <b>/etc/pca.conf</b>, <b>$HOME/.pca</b>
+and <b>pca.conf</b> in the current
+directory, in this order. In proxy mode the files <b>../etc/pca-proxy.conf</b>,
+<b>/etc/pca-proxy.conf</b> and
+<b>pca-proxy.conf</b> in the current directory are read instead.
+Options are set by specifying
+<b>option=value</b> in the file. Example: To set the path of the wget command,
+use <b>wget=/opt/bin/wget</b>. To enable debug output, use
+<b>debug=1</b>.</p>
+<p>Then, all environment variables matching <b>PCA_OPTION</b> are
+read. Example:
+To set the patch download directory, set <b>PCA_PATCHDIR</b> to
+<b>/some/dir/</b>. To set the <b>noheader</b> option, set <b>PCA_NOHEADER</b>
+to <b>1</b>.</p>
+<p>At last, the command line options are read. Example: To set the location
+of the patch xref file, use <b>-X /tmp</b> or <b>--xrefdir=/tmp</b>.
+To set the option for safe patch installation, use <b>-s</b> or <b>--safe</b>.</p>
+<p>All boolean options (i.e. those which do not take an argument) can
+be negated on the command line by specifying <b>--no-option</b> to override
+settings from configuration files. Version 2.32 or newer of the
+Getopt::Long module is required. Example: If <b>noreboot=1</b> is set in
+<b>pca.conf</b> it can be overridden with <b>--no-noreboot</b>.</p>
+<p>The <b>operands</b> option can only be used in configuration files and as
+an environment variable. It sets the default OPERANDS.</p>
+<p>In a configuration file, everything after a <b>#</b> character is
+regarded as a comment and ignored.</p>
+<p>
+</p>
+
+<h4><a name="patch_download_and_installation">PATCH DOWNLOAD AND INSTALLATION</a></h4>
+<p>The <b>-d</b> option downloads patches to the current directory, <b>-i</b>
+downloads and installs them.
+The download option can be used as a regular user. The external command
+wget is used for the actual download. If it can't be found in the
+default paths, set the <b>wget</b> option to contain the path to the
+wget command.
+The install option
+requires PCA to be run as root. It uses <b>patchadd</b> to
+install the patches.
+Using <b>-I</b> instead of <b>-i</b>
+pretends to install patches, but does not actually install any patch.</p>
+<p>After the installation of each patch, a status line shows the
+current time, the time used to install the patch and the total
+run time. It also includes the current/total number of patches
+and counts for successful, skipped and failed patch installs.</p>
+<p>The patches are downloaded from Oracle's patch download server.
+To download patches from Oracle, a My Oracle Support (MOS) Account
+is required. For most patches a Support Contract is required, too
+(see SUPPORT LEVELS for more information).
+Set the two options <b>user</b> and <b>passwd</b> to contain
+the MOS user name and password. If unset, PCA asks for
+MOS Account data interactively. If <b>user</b> is set, but
+<b>passwd</b> is not, PCA will ask for the password.</p>
+<p>As PCA analyzes the information in the cross-reference file to resolve
+patch dependencies, it lists and installs patches in the correct order.
+Patches for the patch installation utilities will always be installed
+first to avoid issues with subsequent patches.</p>
+<p>For some patches, a (reconfiguration) reboot is
+recommended or required after installation. The /reconfigure file
+is created as needed and a message is shown in the summary.
+When the <b>install</b> or <b>pretend</b> option
+is combined with the <b>noreboot</b> option, only patches which do
+not require a reboot are installed. This information is contained
+in the patch distribution file. Therefore, even if <b>noreboot</b>
+is specified, the patches are downloaded anyway; only the installation
+is skipped.</p>
+<p><b>patchadd</b> normally keeps a backup of all files it modifies.
+Using the <b>--nobackup=ID</b> option with PCA instructs
+<b>patchadd</b>
+to not keep backup copies of replaced files (see the <b>-d</b> option in
+patchadd's man page).</p>
+<p>Sometimes a patch re-delivers
+and silently overwrites files which have been modified locally. PCA
+tries to overcome this issue with its safe patch installation mode.
+Before installing a patch, PCA checks all files listed in the patch
+README for local modifications. If any modified file is in danger
+of being overwritten, a warning is shown and the patch is skipped.
+Safe mode is off by default, and can be turned on by using <b>-s</b> or
+<b>--safe</b> in
+combination with <b>-i</b> (install patches) or <b>-I</b> (pretend to install
+patches). You must be root to use <b>-s</b>. Running <b>pca -s -I</b> is a
+safe way of identifying problematic patches without actually installing them.</p>
+<p>In rare cases, patches modify or replace files without updating the
+checksum in the package database used by PCA. Installing a more recent
+revision of the same patch will fail although no local modifications
+have been made to a file. Patch installation can be forced by not
+using the <b>safe</b> option.</p>
+<p>Running <b>pca -si missingrs</b> on a regular basis
+is enough to keep the system at the recommended patch level.
+This is quite comfortable and works without problems in many cases.
+As some patches require special handling,
+it's recommended to read the README of every patch before
+installation. PCA's <b>-L</b> option for HTML output and the
+<b>--readme</b> option to display patch READMEs are handy for that.</p>
+<p>Sometimes installing a patch might fail because of inconsistencies
+in the patchdiag.xref file, the patch README and the
+information contained inside the patch. Often this gets fixed in a new
+version of patchdiag.xref or in a new revision of the patch.
+Either try again a few days later or take a look at the
+<b>Notes</b> section on the PCA web site, where some problematic
+patches are listed.</p>
+<p>
+</p>
+
+<h4><a name="support_levels">SUPPORT LEVELS</a></h4>
+<p>In order for a user to download a patch, the user must have a
+Support Level on their My Oracle Support (MOS) Account that matches
+the Support Level on the patch. A certain type of Support Contract
+includes one or more Support Levels.</p>
+<p>To find out which Support Levels a User and a Patch have, follow
+the instructions in Knowledge Article ID <b>1269292.1</b> on MOS.</p>
+<p>Possible Support Levels and Support Contract Coverage:</p>
+<dl>
+<dt><strong><a name="item_os">OS (Operating System)</a></strong><br />
+</dt>
+<dd>
+Solaris patches and updates.
+Requires <b>Premier Support for Operating Systems</b> or
+<b>Premier Support for Systems</b>.
+</dd>
+<p></p>
+<dt><strong><a name="item_pub">PUB (Public Patches)</a></strong><br />
+</dt>
+<dd>
+Oracle Open Office/StarOffice and patch utilities.
+No Support Contract required.
+</dd>
+<p></p>
+<dt><strong><a name="item_sw">SW (Software)</a></strong><br />
+</dt>
+<dd>
+Existing Oracle software and Sun middleware.
+Requires <b>Premier Support for Software</b>.
+</dd>
+<p></p>
+<dt><strong><a name="item_fmw">FMW (Firmware)</a></strong><br />
+</dt>
+<dd>
+Firmware, drivers, bios, system controller software, ALOM/ILOM, diagnostics.
+Requires <b>Hardware Warranty</b> or <b>Premier Support for Systems</b>.
+</dd>
+<p></p>
+<dt><strong><a name="item_vin">VIN (Vintage Solaris)</a></strong><br />
+</dt>
+<dd>
+Solaris 8.
+Requires <b>Oracle Solaris Extended Support</b>.
+</dd>
+<p></p>
+<dt><strong><a name="item_exs">EXS (Extended Support)</a></strong><br />
+</dt>
+<dd>
+EOL Oracle Software.
+Requires <b>Lifetime Support</b>.
+</dd>
+<p></p></dl>
+<p>
+</p>
+
+<h4><a name="local_patch_server">LOCAL PATCH SERVER</a></h4>
+<p>On a local network, it might be useful to have a local patch
+server.
+There are two ways to set up a local patch server for PCA, using the
+<b>patchurl</b> and <b>xrefurl</b> options.
+With these options, alternative locations for patches, patch READMEs
+or patchdiag.xref can be specified. Multiple URLs and the special
+keyword <b>oracle</b> can be used to make PCA check various local or
+remote resources and Oracle's server. Like this, you can create
+patch repositories with already downloaded patches and let PCA
+always look there before trying to access the Oracle server.</p>
+<p>Create the local patch repository by copying downloaded patch files
+(e.g. 123456-78.zip), patch READMEs (e.g. README.123456-78) and/or
+patchdiag.xref to a
+directory which is available via NFS or on a local web server.
+Point PCA at it by setting the <b>patchurl</b> and/or <b>xrefurl</b>
+options to the URL
+(e.g. ``file:/pca/ oracle'' or ``http://www.my.org/patches/'').</p>
+<p>The more advanced method uses PCA to work as a local caching proxy for itself.
+Create a directory in the document root of the local web server, and
+link or copy pca there under the name <b>pca-proxy.cgi</b>. Make sure that
+the directory (or the directories specified with the <b>xrefdir</b> and <b>patchdir</b>
+options) are owned and writable by the user under which CGI scripts run,
+as patches, patch READMEs and patchdiag.xref will be stored there.
+Verify that the
+web server is configured to run CGI scripts (for apache, check the ExecCGI
+and AddHandler options in httpd.conf).
+Create a pca.conf
+file in the same directory to specify My Oracle Support Account data. On the client,
+point
+PCA at the caching proxy by setting the <b>patchurl</b> and <b>xrefurl</b>
+options to e.g.
+http://www.my.org/patches/pca-proxy.cgi.</p>
+<p>In proxy mode, if a patch or
+patch README exists in the local cache directory, it is delivered
+immediately. If it doesn't, the file is downloaded from Oracle's
+patch server, put into the cache, and delivered. For patchdiag.xref,
+<b>pca-proxy.cgi</b> will always make sure that it has a recent
+version of this file and deliver it from its cache.</p>
+<p>With a local caching proxy in place, client systems running PCA and
+using this proxy do not need direct access to the Internet at all.</p>
+<p>Example setup of a local caching proxy on a vanilla Solaris 10 system:</p>
+<pre>
+  # mkdir /var/tmp/pca
+  # chown webservd:webservd /var/tmp/pca</pre>
+<p>This is where patches, READMEs and patchdiag.xref will be stored by
+the proxy. Now put the CGI script in place and create a configuration
+file:</p>
+<pre>
+  # cd /var/apache2/cgi-bin
+  # cp /usr/local/bin/pca pca-proxy.cgi
+  # chmod 555 pca-proxy.cgi
+  # cat &gt; /etc/pca-proxy.conf
+  xrefdir=/var/tmp/pca
+  patchdir=/var/tmp/pca
+  user=XXXXXX
+  passwd=YYYYYY
+  ^D
+  # chown webservd:webservd /etc/pca-proxy.conf
+  # chmod 600 /etc/pca-proxy.conf</pre>
+<p>If the apache2 server is not running yet, create <b>/etc/apache2/httpd.conf</b>
+and enable the server with <b>svcadm</b>:</p>
+<pre>
+  # cp /etc/apache2/httpd.conf-example /etc/apache2/httpd.conf
+  # svcadm enable svc:/network/http:apache2</pre>
+<p>Test the caching proxy on a client:</p>
+<pre>
+  ./pca -X . --xrefurl=http://server.domain/cgi-bin/pca-proxy.cgi
+  --patchurl=http://server.domain/cgi-bin/pca-proxy.cgi -d 126306-01</pre>
+<p>The patchdiag.xref and 126301-01.zip will be downloaded by the proxy and
+stored in <b>/var/tmp/pca/</b> on the server, and both files will be delivered
+to the client. If it doesn't work, add <b>debug=1</b> to the pca.conf file
+and look at /var/tmp/pca-proxy-debug.txt and /var/apache2/logs/ for details.</p>
+<p>When downloading large patches through the proxy, you must ensure that
+the web server does not kill <b>pca-proxy.cgi</b> before it has completed
+the download from Oracle's patch server. Apache has a <b>Timeout</b> option with a default
+value of 300 seconds. Raise that to 1800 seconds to avoid problems.</p>
+<p>For large setups, you can build a cascade of local caching proxies by
+pointing one proxy at another proxy by setting <b>xrefurl</b> and <b>patchurl</b>
+to point at the master proxy in the slave proxies' pca.conf.</p>
+<p>As PCA uses the wget command to download patches from the patch server,
+make sure that any specially required option is set in <b>/etc/wgetrc</b> or
+<b>$HOME/.wgetrc</b>. Example: When running the local patch server on a HTTPS
+server with a self-signed certificate, <b>check-certificate=off</b> should
+be specified in <b>wgetrc</b> on the client.</p>
+<p>
+</p>
+
+<h4><a name="unbundled_patches">UNBUNDLED PATCHES</a></h4>
+<p>Usually a patch is related to one or more software packages installed
+on a system. Apart from that, there are unbundled patches. They
+provide firmware updates for machines, disks, or tape drives and fixes
+for software which doesn't come in package format. Currently there is
+no way to automatically determine if such patches actually apply to a
+system.</p>
+<p>The <b>unbundled</b> operand specifies this type of patches.
+At first, <b>pca -l unbundled</b> will show a long list of patches.
+To reduce this list
+to the interesting ones, unnecessary patches can be ignored by using
+the <b>ignore</b> option in a PCA configuration file.
+For patches you are absolutely not interested in, use an
+entry like <b>ignore=123456</b> in the configuration file;
+this patch will never be shown again, even if a newer revision of
+the patch appears. Patches that are installed in their current revision
+should be put with this revision into the configuration file
+(e.g. <b>ignore=123456-78</b>).
+The patch will show up again when a newer revision is released.</p>
+<p>Example: Patch 106121-18 contains the most recent PROM firmware for
+Ultra 5/10 workstations. As it's installed on all systems, I put
+<b>ignore=106121-18</b> into the configuration file.
+When a new revision of the patch
+is released, it will show up in <b>pca -l unbundled</b> again.
+Patch 118324 is the PROM firmware patch for the Sun Fire V440. As I
+don't have such a machine, I put <b>ignore=118324</b> into the
+configuration file to ignore this patch completely.</p>
+<p>All that PCA can do is to notify of new unbundled patches or patch
+revisions. It's on you to decide whether a patch is needed by checking
+its README file, and to install it by following the instructions in the
+README. Unbundled patches cannot be installed by patchadd or PCA.</p>
+<p>
+</p>
+
+<h4><a name="creating_patch_reports_for_remote_machines">CREATING PATCH REPORTS FOR REMOTE MACHINES</a></h4>
+<p>PCA can create a patch report or download patches for a
+system which cannot run PCA directly, like stripped-down
+systems without perl or an Internet connection. On such systems,
+run:</p>
+<pre>
+  uname -a &gt; uname.out
+  showrev -p &gt; showrev.out
+  pkginfo -x &gt; pkginfo.out</pre>
+<p>On systems with a minimal core installation of Solaris, the <b>showrev</b>
+command might not be available. Use <b>patchadd -p &gt; showrev.out</b>
+instead.</p>
+<p>Copy the resulting <b>*.out</b> files to a system where PCA is
+installed. Use the <b>-f DIR</b> or <b>--fromfiles=DIR</b> option to
+point PCA at the location of the input files.
+The argument to <b>-f</b> can be a directory
+or a file name prefix like <b>myhost_</b>.
+This allows collecting <b>*.out</b> files for multiple systems
+and telling PCA which ones to read.</p>
+<p>If Sun Explorer is used to collect information about Sun systems, a
+directory containing Sun Explorer output can be used as the argument
+to <b>-f</b> as well.</p>
+<p>Other options can be used in combination
+with <b>-f</b>. Example: <b>pca -f . -d missing</b> downloads all missing
+patches for the remote system.</p>
+<p>
+</p>
+
+<h4><a name="live_upgrade">LIVE UPGRADE</a></h4>
+<p>PCA can be used in combination with Live Upgrade to analyze or install
+patches in an inactive boot environment. Use <b>lumount</b> to mount the
+BE and PCA's <b>--root=DIR</b> option to set the alternative root directory:</p>
+<pre>
+  lumount BE_name
+  pca --root=/.alt.BE_name --install
+  luumount BE_name</pre>
+<p>When you're done patching, activate the new BE and reboot with <b>init 6</b>.</p>
+<p>PCA always installs the patch for the patch installation utilities
+first to avoid possible bugs in <b>patchadd</b>. When patching an inactive
+BE, this patch should be installed manually to the active BE, as its
+patch installation utilities are used even when <b>root=DIR</b> is set.</p>
+<p>
+</p>
+
+<h4><a name="zones">ZONES</a></h4>
+<p>PCA can be run both in the global zone or any non-global zone. Patches
+installed in the global zone are usually installed in all non-global zones,
+too. It's recommended to install patches in the global zone first,
+and then run PCA in all non-global zones to check for additionally
+needed patches. This is necessary if packages have been added to or
+removed from just the global or any non-global zone.</p>
+<p>When PCA is run with the <b>-G</b> option, this option is handed through
+to patchadd, which will install patches in the current zone only. See the
+man page for patchadd for further details.</p>
+<p>
+</p>
+
+<h4><a name="threads">THREADS</a></h4>
+<p>If PCA is run with the <b>--threads=NUM</b> option, in conjunction with the
+download <b>-d</b> or install <b>-i</b> options, PCA will begin downloading multiple
+patches in parallel, up to NUM patches at once.  Patches will still be
+installed one at a time, in the appropriate order.</p>
+<p>The perl version used to run PCA must support threading, otherwise requests
+to use threading will be silently ignored. The /usr/bin/perl which comes with
+Solaris and perl binaries compiled with the default settings do not
+support threading. In that case, the output of <b>--help</b> will indicate that
+threads have been disabled.</p>
+<p>
+</p>
+
+<h4><a name="update_pca">UPDATE PCA</a></h4>
+<p>Changes to the patch infrastructure by Oracle and problems with
+single patches often make updates to PCA necessary. To ease that procedure,
+the <b>update=TYPE</b> option can be used. The default is type <b>never</b> - PCA
+will never
+check for updates. Use the <b>check</b> type to contact the PCA webpage and
+check for available updates. Using <b>now</b> will not only check, but also
+download and install the updated version of PCA.</p>
+<p>With <b>auto</b>, PCA will check for updates automatically once per day,
+keeping itself up to date without user intervention. Unlike <b>check</b>
+and <b>now</b> which are for interactive usage, this type is best used
+in a configuration file.</p>
+<p>The default URL to check for updates is
+http://www.par.univie.ac.at/solaris/pca/stable/
+(official release). It can be set with the <b>pcaurl=URL</b> option.
+Set it to
+http://www.par.univie.ac.at/solaris/pca/develop/
+to check for and update to new development versions of PCA.
+You can set <b>pcaurl</b> to point at a local URL
+to distribute whatever version in your local network.
+If set to point at a local caching proxy, the proxy will check
+for updates automatically, keep a local copy of the pca script
+in <b>patchdir</b> and deliver it to the client.</p>
+<p>Set <b>update=auto</b> in the configuration file for PCA in proxy mode
+(<b>pca-proxy.cgi</b>) to make it keep itself up-to-date.</p>
+<p>
+</p>
+
+<h4><a name="jumpstart">JUMPSTART</a></h4>
+<p>You can use PCA to install patches in the finish script of a jumpstart
+install server. Perl is included in the OS image which is booted over
+the network for installation starting with Solaris 8. As the machine
+will probably not have an Internet connection during installation, you can
+either pre-download all necessary patches into a directory accessible
+via NFS, or set up a local caching proxy. If you use any http or ftp
+url for <b>xrefurl</b> or <b>patchurl</b>, you must put a copy of wget into
+the directory that contains your finish script and PCA, and use the
+<b>wget</b> option to point PCA at it.</p>
+<p>Set <b>patchdir</b> and <b>xrefdir</b> (unless you use <b>nocheckxref</b>) to /tmp
+to avoid problems with non-writable directories.  As the OS which gets
+installed during jumpstart is mounted at /a, use the <b>root</b> option to
+instruct PCA to install patches there.</p>
+<p>
+</p>
+
+<h4><a name="examples">EXAMPLES</a></h4>
+<p>List all missing patches. This is
+the same as running pca without any arguments:</p>
+<pre>
+  pca -l missing</pre>
+<p>List all installed security patches:</p>
+<pre>
+  pca -l installeds</pre>
+<p>Display the README for the current revision of patch 116532:</p>
+<pre>
+  pca --readme 116532</pre>
+<p>Show all installed patches which are marked Bad. You should read the
+patch README to find out how to handle a specific bad patch:</p>
+<pre>
+  pca -l bad</pre>
+<p>Download multiple explicitly specified patches, asking for
+My Oracle Support Account data when needed:</p>
+<pre>
+  pca -d 121308-02 122032</pre>
+<p>Download and install all missing patches which do not require to reboot
+the system in safe mode:</p>
+<pre>
+  pca --noreboot --safe --install</pre>
+<p>Download all missing patches for a remote system. Output from <b>uname -a</b>,
+<b>showrev -p</b> and <b>pkginfo -x</b> has been saved to /tmp/myhost_uname.out
+etc. before:</p>
+<pre>
+  pca -f /tmp/myhost_ -d missing</pre>
+<p>Check for a new version of PCA and install it:</p>
+<pre>
+  pca --update now</pre>
+<p>A sample configuration file:</p>
+<pre>
+  # My Oracle Support Account
+  user=myuser@mydomain.org
+  passwd=secret
+  # Try local patch repositories before the Oracle server
+  patchurl=<a href="file:/patches">file:/patches</a> <a href="http://www.my.org/patches/">http://www.my.org/patches/</a> oracle
+  syslog=user
+  safe=1</pre>
+<p>A sample configuration file for a client of a PCA proxy:</p>
+<pre>
+  # Get everything from the proxy
+  patchurl=http://www.my.org/patches/pca-proxy.cgi
+  xrefurl=http://www.my.org/patches/pca-proxy.cgi</pre>
+<p>
+</p>
+
+<h4><a name="environment_variables">ENVIRONMENT VARIABLES</a></h4>
+<p>All environment variables with the <b>PCA_</b> prefix are evaluated
+as options; see CONFIGURATION for details. Furthermore, these environment
+variables are used by PCA:</p>
+<dl>
+<dt><strong><a name="item_pager">PAGER</a></strong><br />
+</dt>
+<dd>
+Path to the command which is used to display patch README
+files
+</dd>
+<p></p>
+<dt><strong><a name="item_tmpdir">TMPDIR</a></strong><br />
+</dt>
+<dd>
+During patch installation, patches are extracted under this
+directory
+</dd>
+<p></p></dl>
+<p>
+</p>
+
+<h4><a name="download_errors">DOWNLOAD ERRORS</a></h4>
+<p>If downloads of patches, patch READMEs or the patchdiag.xref
+file fail, the displayed error might help to diagnose the problem:</p>
+<dl>
+<dt><strong><a name="item_error">Service Error (403)</a></strong><br />
+</dt>
+<dd>
+The user/passwd combination you provided is not correct.
+</dd>
+<p></p>
+<dt><strong><a name="item_content">You are not entitled to retrieve this content (403)</a></strong><br />
+</dt>
+<dd>
+The user/passwd combination is correct, but the MOS Account does not have
+the Support Level required for the requested file. See
+SUPPORT LEVELS for more information.
+</dd>
+<p></p>
+<dt><strong><a name="item_found">Not Found (404)</a></strong><br />
+</dt>
+<dd>
+The requested file does not exist on Oracle's patch server.
+</dd>
+<p></p>
+<dt><strong><a name="item_timeout">Server Error, Service Unavailable, Gateway Timeout (5xx)</a></strong><br />
+</dt>
+<dd>
+The Oracle patch server is in a bad state. Retry later.
+</dd>
+<p></p></dl>
+<p>
+</p>
+
+<h4><a name="exit_status">EXIT STATUS</a></h4>
+<p>The following exit values are returned:</p>
+<pre>
+  0  No error</pre>
+<pre>
+  1  Unknown error</pre>
+<pre>
+  2  Usage error</pre>
+<pre>
+  3  Reboot required to continue patch installation</pre>
+<pre>
+  4  Reboot required</pre>
+<pre>
+  5  Reboot recommended</pre>
+<p>
+</p>
+
+<h4><a name="authors">AUTHORS</a></h4>
+<p>Martin Paul &lt;<a href="mailto:martin.paul@univie.ac.at">martin.paul@univie.ac.at</a>&gt;</p>
+<p>Thanks to everybody who contributed code or provided feedback:</p>
+<p>Andrew Brooks, Bruce Riddle, Damian Hole, Peter Van Eynde,
+Richard Whelan, Eugene MacDougal, Peter Schmitz, Fredrik Lundholm,
+Dan W. Early, Markus Reger, Constantijn Sikkel, Stephen P. Potter,
+Fletcher Cocquyt, Timothy J. Howard, Thomas Bluhm, Frank Doeschner,
+Loris Serena, Marion Biallowons, Ricky Chew, Martin R. Korczak,
+Imad Soltani, Scott Lucas, Anders Grund, Bernd Senf, Chris Zappala,
+Ashley Krelle, Mike Patnode, Mats Larsson, Thomas Maier-Komor,
+Willi Burmeister, Stefaan A. Eeckels, Ian Collins, Leptonux,
+Joseph Millman, Guenter Zaehle, Frank Fejes, Mark Jeffery,
+Alberto da Silva, Mauricio Tavares, Kurt Rabitsch, Jeff Wieland,
+Frank Bertels, Steve Meier, Dan Lorenzini, Gerard Henry, Laurent Blume,
+Sean Berry, George Moberly, Erik Nordenberg, Mark Ashley, Jim Prescott,
+Christian Pelissier, Hugues Sapin, Colin A. White, Dale T. Long,
+Christophe Kalt, Bruno Delbono, Nan Liu, Frank Cusack,
+Marlon Sanchez-Nunez, Jois Diwakar, Toni Viemero, Jens Larsson,
+Gordon D. Gregory, Luis Catacora, Erik Larson, Tim Longo, Mike Borkowski,
+Nicolas Goy, William Bonnet, Dave Love, Thomas Brandstetter, Daniel Kunkel,
+Gregor Longariva, Miroslav Zubcic, Tim Bradshaw, Chris Quenelle,
+Christopher Odenbach, Andy Fiddaman, Peter Sundstrom, Andreas F. Borchert,
+Jonah Simandjuntak, Damian Lilley, Chris Ridd, Albert Lee, James Lick,
+John Douglass, Andres A. Flores Concepcion, Chris Reece, Toni Viemero,
+Timothy Meader, John D. Groenveld, Ceri Davies, Martin Wismer,
+Laszlo Kiss, Mike Moya, Leon Koll, Shawn Boots, Mike Wallace,
+Robert P. McGraw, Peter Arnold, Matt Kolb, Mike Shackelford, John Dzubera,
+Donald Teed, Asif Iqbal, Stephen Nash, Jason Loretz, Bryan Howard, Roman,
+Jonathan Hoefker, Daniel Trinkle, Ron Halstead, Rob Fisher, Chris Coffey,
+Travis Freeland, Hans-Werner Jouy, Gary Mills, Craig Bell, Mick Russom,
+Brian King, Ashley Rowland, Guillermo Castellini, Bryan D. Moorehead,
+Mark Scheufele, Corey Becker, David Robson, Kevin Maguire, Mike Wallace,
+Marcos Della, Frank Sperber, Horst Scheuermann, Adrian Ulrich, Steve Fox,
+David Collodel, Jeremiah Johnson, Erik Schubert, David Sullivan,
+Tom Francen, Matthew Scala, Richard Mayebo, Gerald Sinkiewicz,
+David Montag, Steve Forman, Jeffrey King, Gerry Van Trieste,
+Chris Denneen, Greg Barry, Paul Armstrong, Andreas Fineske,
+Eric Kissinger, Torsten Peter, Yevgeniy Averin, Sean Walmsley,
+Alexander Skwar, Jeffrey King, Jones Olatunji, Richard Skelton,
+Kjetil Torgrim Homme, Brian McNamara, Gerry Sinkiewicz, Kazuyuki Sato,
+Mayuresh Kshirsagar, Mauro Mozzarelli, Judy Illeman Gaukel, Petri Kunnari,
+William Pool, Steven Faulconer, Rono Jacob, Will Green, Martial Rioux,
+Zafar Pravaiz, Romeo Theriault, Fredrich Maney, Ben Szoko, Pietari Hyvarinen,
+Roman Pestka, Juergen Mengeling, David S. Bryant, Maciek S., Alexander
+Sverdlov, David Coronel, David Groce, Jeff Woolsey, Thomas Marshall,
+Allen Eastwood, Mike Busse, Martin Bellenberg, Dennis Clarke,
+Dominique Frise, Mark Hopkins, Enda O'Connor, Victor Feng, Peter Englmaier,
+Paul B. Henson, Gerry Haskins, Jeff A. Earickson, Stuart Anderson,
+Dagobert Michelsen, Simon Bellwood, Ateeq Altaf, Andrew Berry, Julian Davies,
+Con Petsoglou, Uwe Wolfram, Micah Cowan, Dan Shaw, Paul Moore, Neal A. Lucier,
+Eric Bourgi, Sergiusz Pawlowicz, Paul Van Bommel, Matt Banks, Ray Cromwell,
+Jan Holzhueter, Liam Carey, Alex Docauer, Christopher S. Chan, Philip Kime,
+Michael Schmarck, Kevin L. Bliss, Thomas Bleek, Albert White, Ron Helzer,
+Sergei Haramundanis, Steven M. Christensen, Felix Schattschneider,
+Rajiv G Gunja, Jeremy Simpson, Jesse Caldwell, Amy Rich, Jens Elkner,
+Stephen Matich, Justus J. Addiss, Fred Chagnon, David French, Don O'Malley,
+Stuart F. Biggar, Diana Stockdale, Randal T. Rioux, Todd Koeckeritz,
+Matthew Braun, Shaimon Luke, Norman Lyon, Sebastian Kayser, Paul A. Zakas,
+Glenn Satchell, Ben Taylor, Brian Geary, Drazen Kacar, Edwin Schwab,
+Shahab Khan, Thots Soppannavar, Beth Lancaster, Michael Jackson,
+Daniel Pecka, Dirk Lemoisne, Scott L Nishimura, Mike Brown,
+Michele Vecchiato, Eugene Olshenbaum, Benny Kleykens, Colin Daly, Rod Holmes,
+Jeff Blaine, Tim Frost, Steven M. Falconer, Thomas Gouverneur,
+Marcel Hofstetter, Jeremy Daniel.</p>
+<p>
+</p>
+
+<h4><a name="mailing_lists">MAILING LISTS</a></h4>
+<p>Two mailing lists are available:</p>
+<dl>
+<dt><strong><a name="item_pca_2dnews">pca-news</a></strong><br />
+</dt>
+<dd>
+This is a one-way list for announcements of new versions and news.
+To join, send an empty message to &lt;<a href="mailto:pca-news-join@lists.univie.ac.at">pca-news-join@lists.univie.ac.at</a>&gt;.
+</dd>
+<p></p>
+<dt><strong><a name="item_pca">pca</a></strong><br />
+</dt>
+<dd>
+This is a discussion and support list. Messages from pca-news will be
+posted to this list as well. Only members are allowed to post to the list.
+To join, send an empty message to
+&lt;<a href="mailto:pca-join@lists.univie.ac.at">pca-join@lists.univie.ac.at</a>&gt;. To post to the list, send your
+message to &lt;<a href="mailto:pca@lists.univie.ac.at">pca@lists.univie.ac.at</a>&gt;.
+</dd>
+<p></p></dl>
+<p>
+</p>
+
+<h4><a name="see_also">SEE ALSO</a></h4>
+<dl>
+<dt><strong><a name="item_pca_web_site_3a">PCA web site:</a></strong><br />
+</dt>
+<dd>
+http://www.par.univie.ac.at/solaris/pca/
+</dd>
+<p></p></dl>
+
+
+
+
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+</body>
+</html>

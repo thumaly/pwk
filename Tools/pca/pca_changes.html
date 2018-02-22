@@ -1,0 +1,771 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<title>Patch Check Advanced</title>
+<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body bgcolor="#ffffff">
+
+<table width="100%" cellpadding=5 cellspacing=0 border="0">
+
+<tr>        
+  <td colspan=2>
+    <table width="100%" bgcolor="#9999cc">
+    <tr>
+      <td width="15%" align=right valign=top>
+        <h1>PCA -</h1>
+      </td>
+      <td width="70%" align=left valign=top>
+        <h1>Patch Check Advanced</h1>
+        <i>Analyze, download and install patches for Oracle Solaris</i>
+      </td>
+      <td width="15%" align=right valign=top>
+        Written by<br>
+        <a href="mailto:martin.paul@univie.ac.at">Martin Paul<a><br><br>
+        News via <a href="news.rdf">RSS</a>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+
+<tr>
+  <td width="15%" valign=top>
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tr>
+      <td> 
+        <table width="100%" cellpadding=5>
+        <tr>
+          <td bgcolor="#ddddff">
+            <h3><a href="intro.html">Intro</a></h3>
+            <h3><a href="news.html">News</a></h3>
+            <h3><a href="installation.html">Installation</a></h3>
+            <h3><a href="usage.html">Usage</a></h3>
+            <h3>Changes</h3>
+            <h3><a href="lists.html">Lists</a></h3>
+            <h3><a href="notes.html">Notes</a></h3>
+            <h3><a href="contrib.html">Contrib</a></h3>
+            <h3><a href="links.html">Links</a></h3>
+            <h3><a href="donation.html">Donation</a></h3>
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+
+  <td width="85%" valign=top>
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tr>
+      <td>
+        <table width="100%" cellpadding=5>
+        <tr>
+          <td bgcolor="#eeeeff">
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+<!--
+
+<ul>
+
+	<li><a href="#changes">CHANGES</a></li>
+	<ul>
+
+		<li><a href="#version_2015032701">Version 20150327-01</a></li>
+		<li><a href="#version_2014011501">Version 20140115-01</a></li>
+		<li><a href="#version_2013050201">Version 20130502-01</a></li>
+		<li><a href="#version_2012082901">Version 20120829-01</a></li>
+		<li><a href="#version_2012032601">Version 20120326-01</a></li>
+		<li><a href="#version_2012011901">Version 20120119-01</a></li>
+		<li><a href="#version_2011101801">Version 20111018-01</a></li>
+		<li><a href="#version_2011081201">Version 20110812-01</a></li>
+		<li><a href="#version_2011080502">Version 20110805-02</a></li>
+		<li><a href="#version_2011032901">Version 20110329-01</a></li>
+		<li><a href="#version_2010122101">Version 20101221-01</a></li>
+		<li><a href="#version_2010121301">Version 20101213-01</a></li>
+		<li><a href="#version_2010091001">Version 20100910-01</a></li>
+		<li><a href="#version_2010072701">Version 20100727-01</a></li>
+		<li><a href="#version_2010060701">Version 20100607-01</a></li>
+		<li><a href="#version_2010051401">Version 20100514-01</a></li>
+		<li><a href="#version_2010030902">Version 20100309-02</a></li>
+		<li><a href="#version_2009121602">Version 20091216-02</a></li>
+		<li><a href="#version_2009121001">Version 20091210-01</a></li>
+		<li><a href="#version_2009103001">Version 20091030-01</a></li>
+		<li><a href="#version_2009082701">Version 20090827-01</a></li>
+		<li><a href="#version_2009072301">Version 20090723-01</a></li>
+		<li><a href="#version_2009040801">Version 20090408-01</a></li>
+		<li><a href="#version_2009022401">Version 20090224-01</a></li>
+		<li><a href="#version_2008121801">Version 20081218-01</a></li>
+		<li><a href="#version_2008102401">Version 20081024-01</a></li>
+		<li><a href="#version_2008091101">Version 20080911-01</a></li>
+		<li><a href="#version_2008090901">Version 20080909-01</a></li>
+		<li><a href="#version_2008072901">Version 20080729-01</a></li>
+		<li><a href="#version_2008062601">Version 20080626-01</a></li>
+		<li><a href="#version_2008051901">Version 20080519-01</a></li>
+		<li><a href="#version_2008050701">Version 20080507-01</a></li>
+		<li><a href="#version_2008031101">Version 20080311-01</a></li>
+		<li><a href="#version_2008013101">Version 20080131-01</a></li>
+		<li><a href="#version_2008010901">Version 20080109-01</a></li>
+		<li><a href="#version_2007121401">Version 20071214-01</a></li>
+		<li><a href="#version_2007111501">Version 20071115-01</a></li>
+		<li><a href="#version_2007102301">Version 20071023-01</a></li>
+		<li><a href="#version_2007101102">Version 20071011-02</a></li>
+		<li><a href="#version_2007100503">Version 20071005-03</a></li>
+		<li><a href="#version_2007100201">Version 20071002-01</a></li>
+	</ul>
+
+</ul>
+-->
+<!-- INDEX END -->
+
+<p>
+</p>
+<h4><a name="changes">CHANGES</a></h4>
+<p>
+</p>
+<b><a name="version_2015032701">Version 20150327-01</a></b>
+<pre>
+ * Add new CA certs
+ * Must use --no-check-certificate for Oracle server with wget &lt;= 1.12
+ * Verify file type on patch downloads from Oracle server</pre>
+<p>
+</p>
+<b><a name="version_2014011501">Version 20140115-01</a></b>
+<pre>
+ * Add new CA certs for login.oracle.com
+ * Use --secure-protocol=TLSv1 with wget on all connections to Oracle server
+ * Fix bug in HTML output
+ * Whitelist: add 148104, 148105
+ * Whitelist: add 150525, 150526</pre>
+<p>
+</p>
+<b><a name="version_2013050201">Version 20130502-01</a></b>
+<pre>
+ * Do not pass on Recommended flag with --minimal option
+ * Correct patch obsoletions from installed patches with --minimal option
+ * Fix rare bug of certain patches not showing up with --minimal option
+ * Remove link to patch README on wesunsolve.net in HTML output
+ * Temporary workaround for problem with Oracle server and wget from OpenCSW
+ * Whitelist: add 147143, 147144
+ * Whitelist: add 147147, 148148, 148027, 148028
+ * Whitelist: add 149173, 149174, 149175, 149176
+ * Apply check: add 147416, 147419</pre>
+<p>
+</p>
+<b><a name="version_2012082901">Version 20120829-01</a></b>
+<pre>
+ * Check for wget in update function
+ * Ignore non-executable wget binaries
+ * Whitelist: replace 145957 with 146232
+ * Whitelist: replace 145958 with 146233
+ * Apply check: add 119303, 119304, 119305
+ * Apply check: add 147992, 147993
+ * Apply check: add 112762
+ * Apply check: add 112443</pre>
+<p>
+</p>
+<b><a name="version_2012032601">Version 20120326-01</a></b>
+<pre>
+ * Fix timing calculation for patch sessions longer than 24 hours
+ * Add warning when --minimal is used with anything but missingr
+ * When using option &quot;minimal&quot;, show that in the &quot;List:&quot; header
+ * Always put URL at the end of wget command line
+ * Change author's e-mail address
+ * Documentation: Recommend use of --minimal with missingr only
+ * Whitelist: add 148165, 148166
+ * Whitelist: add 147673, 147674
+ * Whitelist: add 146399
+ * Whitelist: modify 147441
+ * Apply check: replace 145786 with 146068
+ * Apply check: replace 125952/125953 with 147673/147674</pre>
+<p>
+</p>
+<b><a name="version_2012011901">Version 20120119-01</a></b>
+<pre>
+ * Ignore missing showrev/patchadd on Solaris 11
+ * Remove useless attempt to guess file type with zip files from Oracle
+ * Documentation: add information about &quot;minimal&quot; option
+ * Whitelist: add 115336, 115337
+ * Whitelist: modify 147440, 147441
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2011101801">Version 20111018-01</a></b>
+<pre>
+ * Allow multiple URLs and paths for xrefurl/patchurl options
+ * Add special keyword &quot;oracle&quot; for xrefurl/patchurl options
+ * Catch unknown type of URLS in xrefurl/patchurl options
+ * Change behaviour of &quot;ignore&quot; option
+ * Add new format specifier (%d) to show patch release date
+ * Add link to patch README on wesunsolve.net in HTML output
+ * Fix wrong behaviour when ignoring required patch revisions
+ * Workaround for a bug in wget 1.13.3
+ * Show required patches which are ignored in debug output
+ * Documentation: Update description of the &quot;ignore&quot; option
+ * Documentation: Remove information about &quot;dontask&quot;
+ * Whitelist: add 147714
+ * Whitelist: add 147268, 147269
+ * Whitelist: add 147440, 147441
+ * Whitelist: add 119906, 119907
+ * Update list of contributors</pre>
+<p>When xrefurl/patchurl is set and the requested file cannot be found
+there, PCA will not look at Oracle's server by default anymore. Get
+the old behaviour by adding the special keyword ``oracle'' at the end
+of xrefurl/patchurl (which now accept multiple URLs).</p>
+<p>Patches which are specified via the ignore option are now ignored
+even when they are required by other patches.</p>
+<p>
+</p>
+<b><a name="version_2011081201">Version 20110812-01</a></b>
+<pre>
+ * Always set proxy both for HTTP and HTTPS when wgetproxy is set
+ * Recognize new obscure way of Oracle server saying &quot;login failed&quot;
+ * New option to unzip patches (--unzip)
+ * Remove useless attempt to download tar.Z file from Oracle
+ * Fix error about &quot;Use of initialized value&quot;
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2011080502">Version 20110805-02</a></b>
+<pre>
+ * Deprecate option supplevel after Oracle broke query interface
+ * Fix showing errors when running pca proxy in debug mode
+ * Whitelist: add 144500, 144501
+ * Whitelist: replace 143647/143648 with 145957/145958
+ * Whitelist: replace 143957/143958 with 146489/146490
+ * Whitelist: replace 143645/143646 with 146232/146233
+ * Whitelist: add 146673, 146674
+ * Whitelist: modify 144489
+ * Whitelist: remove obsolete patches
+ * Whitelist: remove patches for products which reached EOSL
+ * Apply check: add 147056
+ * Apply check: add 142633, 142634
+ * Apply check: remove patches for products which reached EOSL
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2011032901">Version 20110329-01</a></b>
+<pre>
+ * Try patch downloads in tar.Z format as well from Oracle
+ * Fix handling of empty input on user/password prompt
+ * Fix a rare warning about uninitialized value
+ * Show size of patchdiag.xref in debug output
+ * Whitelist: add 144488, 144489
+ * Whitelist: add 145042, 145043
+ * Whitelist: remove obsolete patches
+ * Apply check: add 146363, 146364
+ * Apply check: add 113044, 114476, 111846, 114475
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2010122101">Version 20101221-01</a></b>
+<pre>
+ * New option to show support levels of a given MOS Account (--supplevel)
+ * Send authentication to Oracle server without being asked
+ * Use links to getupdates.oracle.com in HTML output
+ * Rename option sshost to ohost
+ * Remove long deprecated option (--localurl)
+ * Remove unused debug message about passing on recommended status
+ * Documentation: Add information about SUPPORT LEVELS
+ * Documentation: Adapt DOWNLOAD ERRORS to Oracle server's answers
+ * Documentation: Refer to pca as PCA
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2010121301">Version 20101213-01</a></b>
+<pre>
+ * Use getupdates.oracle.com as patch server
+ * Use standard wget authentication options with Oracle
+ * Remove option to download patches in JAR format (--jar)
+ * Include and use VeriSign certificate for HTTPS downloads from Oracle
+ * Remove unused VeriSign certificate for sunsolve.sun.com
+ * Documentation: Replace Sun Online Account with My Oracle Support Account
+ * Documentation: Replace sunsolve.sun.com with getupdates.oracle.com
+ * Documentation: Replace Sun with Oracle
+ * Whitelist: add 144537
+ * Apply check: add 145786</pre>
+<p>Attention: A My Oracle Support Account is required instead of a
+Sun Online Account now. All downloads from Oracle's patch server
+require a wget binary with SSL/HTTPS support. Downloads of patches
+in JAR format are not supported by Oracle anymore.</p>
+<p>
+</p>
+<b><a name="version_2010091001">Version 20100910-01</a></b>
+<pre>
+ * Ignore patch dependencies when only full patch IDs/revisions are used
+ * Fix handling of duplicate patch IDs (123456-XX, 123456-YY) as operands
+ * Documentation: fix small formatting issue
+ * Whitelist: add 143957, 143958, 145098, 145099
+ * Whitelist: add 143645, 143646, 142933, 142934, 142909, 142910
+ * Whitelist: add 143647, 143648, 144188, 144189
+ * Whitelist: remove obsolete patches
+ * Apply check: add 139610, 139611
+ * Apply check: add 143075, 143076, 143077, 143078, 143079
+ * Apply check: add 143310, 143311, 143312, 143313, 143314
+ * Apply check: add 143320, 143321, 143322, 143323, 143324
+ * Apply check: add 143053
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2010072701">Version 20100727-01</a></b>
+<pre>
+ * Skip reading of input files only when --readme is the sole action
+ * Do not show cleartext/base64 user/passwd in debug output
+ * Move pca-proxy-debug.txt from /tmp to /var/tmp
+ * Whitelist: add 138261, 138262, 145027, 145028 and 141511
+ * Apply check: add 140993 and 140994
+ * Apply check: remove 139335, 139336, 139337, 139338</pre>
+<p>
+</p>
+<b><a name="version_2010060701">Version 20100607-01</a></b>
+<pre>
+ * Pass on Recommended status from obsolete patches/revisions
+ * Fix handling of non-standard lines in patchdiag.xref
+ * Add specifier %o for --format to show the OS column from xref
+ * Fix handling of multiple use of the same specifier with --format
+ * New experimental option for recommended cluster support (--minimal)
+ * Update list of contributors</pre>
+<p>Attention: There has been a change in the format of patchdiag.xref
+regarding the Recommended status of patches. The changes in this
+version are required to maintain pca's behaviour of always showing
+the most current revision of any patch carrying the Recommended flag.
+See: <a href="http://blogs.sun.com/patch/entry/merging_the_solaris_recommended_and">http://blogs.sun.com/patch/entry/merging_the_solaris_recommended_and</a></p>
+<p>
+</p>
+<b><a name="version_2010051401">Version 20100514-01</a></b>
+<pre>
+ * Fix for configuration file being read twice
+ * New option to feed options directly to wget (--wgetopt)
+ * Pass on Recommended status from non-obsolete revisions
+ * Show program name and current working directory in debug output
+ * Documentation: Information about patch installation utilities patches
+ * Whitelist: add 141876, 141877, 125388 and 125389
+ * Whitelist: remove obsolete patches
+ * Apply check: remove 127683 and 127684, add 143323 and 143324
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2010030902">Version 20100309-02</a></b>
+<pre>
+ * Show timing information and patch counts during patch installation
+ * Do not recommend/require reboot when noreboot option is used
+ * Work better on non-Solaris machines (e.g. Linux)
+ * Documentation: A Sun Service Plan is required for all patch downloads
+ * Documentation: Description of timing information and patch counts
+ * Documentation: Fix Live Upgrade command sequence
+ * Documentation: Fix quotation marks
+ * Whitelist: add 141878, 141879, 142901
+ * Whitelist: remove obsolete patches
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009121602">Version 20091216-02</a></b>
+<pre>
+ * Use internal functions instead of File::Temp module
+ * Fix perl error (modification of a read-only value attempted)
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009121001">Version 20091210-01</a></b>
+<pre>
+ * Make behaviour of the askauth option the default and deprecate it
+ * Never ask for SOA data if user option is set to dontask
+ * Use temporary wgetrc instead of command line option to hide SOA data
+ * Identify patch utility patches dynamically to replace hardcoded list
+ * Ask for SOA data in proxy mode, when needed
+ * Send SOA data to local caching proxy via custom HTTP header
+ * Set user and passwd from custom X_PCA_ HTTP headers in proxy mode
+ * Return HTTP error 401 instead of 500 when proxy needs SOA data
+ * Return HTTP error 404 instead of 500 when proxy can't find a file
+ * Be more verbose when trying downloads from SunSolve
+ * Show more detailed error message on download failures
+ * Safe creation of temporary files/dirs to avoid race condition
+ * Show output from patchadd synchronously in debug mode
+ * Catch wget startup error
+ * Documentation: Add list of possible causes for download failures
+ * Documentation: Add information about Live Upgrade
+ * Whitelist: add 128402, 137048, 141525
+ * Whitelist: remove obsolete patches
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009103001">Version 20091030-01</a></b>
+<pre>
+ * New option to skip check for UID 0 (--norootchk)
+ * Change URL used to download patchdiag.xref with HTTPS
+ * Show debug output on stderr instead of stdout
+ * Do not append &quot;/&quot; to local URL if last character is &quot;=&quot;
+ * Workaround for problem with safe mode and DAP/turbo-packaging
+ * Whitelist: add 140119, 142084, 142085
+ * Whitelist: add 141444, 141445, 141874, 141875
+ * Apply check: add 136799, 136800
+ * Apply check: add 118605, 118607, 118609, 118611, 118613, 118615
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009082701">Version 20090827-01</a></b>
+<pre>
+ * Find the newest wget binary with the best protocol support
+ * Change URL used to download patch READMEs
+ * Prefer HTTPS for patchdiag.xref download
+ * Use HTTPS for patch and README downloads
+ * Ignore and deprecate ssprot option</pre>
+<p>
+</p>
+<b><a name="version_2009072301">Version 20090723-01</a></b>
+<pre>
+ * Fix for wgetproxy option not being honored when HTTPS is used
+ * New option to disable patch dependency resolution (--nodep)
+ * Fix typo in error message
+ * Documentation: Posting to the pca mailing list restricted to members
+ * Apply check: remove obsolete patches
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009040801">Version 20090408-01</a></b>
+<pre>
+ * Use HTTPS as default when connecting to SunSolve if wget supports it
+ * Use arch from pkginfo instead of uname to check if a patch applies
+ * Allow both directory or file to be specified with the wget option
+ * Show setting of root option with patch install message in syslog
+ * Ignore unnecessary error output from pkgparam
+ * Documentation: Mention that --ignore and --stop are sometimes ignored
+ * Apply check: remove obsolete patches
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2009022401">Version 20090224-01</a></b>
+<pre>
+ * Allow search patterns for synopsis to be used with --ignore
+ * Maintain last modification time on patchdiag.xref and pca
+ * Add Last-Modified header in local caching proxy mode
+ * Preserve last modification time on pca update
+ * Maintain timestamps when copying files from <a href="file:/">file:/</a> URLs
+ * New option to download patches in JAR format (--jar)
+ * Fix recognition of jar files
+ * Do not show reboot recommendation message if --root=DIR is set
+ * Make space part of the option value when used in configuration file
+ * Fix safe option for ill-formatted README file
+ * Apply check: add 139335, 139336, 139337, 139338
+ * Apply check: add 123919, 123920, 123921, 123923
+ * Apply check: add 113120, 113121, 113122, 113123
+ * Apply check: add 116687, 116688, 116689, 119300, 119301, 119302
+ * Apply check: add 120108, 120109, 120110, 123200, 123201, 123202
+ * Apply check: add 123827, 123828, 123829, 139345, 139346, 139347
+ * Apply check: add 139548, 139549
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008121801">Version 20081218-01</a></b>
+<pre>
+ * Enable syslog messages to daemon.notice by default
+ * Enhance possible values for syslog option
+ * Log sample message to syslog in debug mode
+ * New generic handling of unknown, non-Sun patches
+ * Documentation: Add cp command in local server setup example
+ * Rename internal function err() to avoid keyword clash with recent perl
+ * Mark patch 114147 as BAD
+ * Whitelist: add 137137, 137138, 121308, 121309, 138270
+ * Whitelist: remove obsolete patch
+ * Apply check: add 110936, 110937, 110938, 110971, 110972, 110973
+ * Apply check: add 118386, 118387, 118388, 118389
+ * Apply check: add 118828, 118829
+ * Apply check: add 118836, 118837, 118838, 118839
+ * Apply check: add 127680, 127681, 127682, 127683, 127684
+ * Apply check: add 138550, 138551, 138552, 138553, 138554
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008102401">Version 20081024-01</a></b>
+<pre>
+ * Read only pca-proxy.conf (not pca.conf) in proxy mode
+ * Provide more detailed exit status
+ * Include patch count and sum of patch ages in header
+ * Fix handling of downloaded files that are too short
+ * Check whether patch already exists before announcing download
+ * Fix handling of PTF/ACSLS patches
+ * Read architecture information from pkginfo output
+ * Accept wrong entries in the arch column in patchdiag.xref
+ * Handle special characters in package version string
+ * Fix erroneous behaviour with checking for patch existance
+ * Simplify internal handling of extra patch requirements
+ * Calculate patch age only once
+ * Apply check: add 116413, 119775, 116831, 116832
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008091101">Version 20080911-01</a></b>
+<pre>
+ * Remove check for patches which are only partly installed</pre>
+<p>
+</p>
+<b><a name="version_2008090901">Version 20080909-01</a></b>
+<pre>
+ * Check for patches which are only partly installed
+ * Fix bug with missing patches with multiple versions of the same package
+ * Log failed patch install to syslog
+ * Fix minage option being one day off
+ * Include and use VeriSign certificate for HTTPS downloads from SunSolve
+ * Include and use CyberTrust certificate for HTTPS downloads from pca home
+ * Simplify patch download and pca update code
+ * Simplify patch README download code
+ * Simplify patchdiag.xref download code
+ * Add some debug code
+ * Fix coding error
+ * Code cleanup
+ * Documentation: Better describe what the noheader option does
+ * Fix required patches which were never released: 125486, 125487, 114431
+ * Fix required patches which were never released: 126677, 126678
+ * Apply check: modify 119313, 119314
+ * Update list of contributors</pre>
+<p>Today pca turns 5 years; version 1.0 was published first on 2003/09/09.</p>
+<p>Thanks to all of you for the large amount of positive feedback I've
+received during the last years!</p>
+<p>
+</p>
+<b><a name="version_2008072901">Version 20080729-01</a></b>
+<pre>
+ * Workaround for 120011/120012 requiring obsolete patches 122660/122661
+ * Fix a bug when using current version of wget with https
+ * Enhance checks for empty or corrupt patchdiag.xref file
+ * New default URL setting for pcaurl
+ * Apply check: add 121708, 121709, 121710, 125848, 125849, 125850
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008062601">Version 20080626-01</a></b>
+<pre>
+ * New option to list patches with a maximum age (--maxage=DAYS)
+ * Create DIR/reconfigure (not /reconfigure) when using --root=DIR
+ * Don't show ignorable error message from showrev
+ * Fix required patches which were never released: 125077, 125078
+ * Whitelist: add 120185, 120186
+ * Whitelist: remove obsolete patches
+ * Apply check: add 137112, 119252, 119253
+ * Apply check: add 136987, 136986
+ * Apply check: add 127553, 127554
+ * Apply check: remove obsolete patches
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008051901">Version 20080519-01</a></b>
+<pre>
+ * Fix a bug where pca fails to run when threads option is used
+ * Use locally existing patches in jar format
+ * Read configuration file immediately when cffile option is seen
+ * Enhance performance with hundreds of patch IDs as operands
+ * Fix hanging unzip when no diskspace is left
+ * Show timestamp in debug mode when patchadd is started
+ * Remove duplicate debug message
+ * Documentation: Add note about possible requirement of wgetrc settings
+ * Whitelist: add 137093, 137094
+ * Apply check: fix 119381
+ * Apply check: add 125445, 125446
+ * Cosmetic changes
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008050701">Version 20080507-01</a></b>
+<pre>
+ * Add option for concurrent patch downloads (--threads=NUM)
+ * New option to set sunsolve access protocol to HTTPS (--ssprot=PROT)
+ * Ignore HTML tags in patchdiag.xref
+ * Honor wgetproxy option for non-SunSolve URLs as well
+ * Read ../etc/pca-proxy.conf in proxy mode
+ * Fix wget version detection under Red Hat
+ * Make safe option work with ill-formatted README files
+ * Whitelist: add 137274, 137275
+ * Whitelist: add 127755, 127756, 128307
+ * Whitelist: add 127127, 127128
+ * Apply check: add 117429, 118386, 118387, 118388, 118389
+ * Apply check: add 118828, 118829, 118836, 118837, 118838, 118839, 118840
+ * Apply check: add 120376, 120377, 120378, 120379, 124689, 124690
+ * Apply check: add 116338, 116339, 118383, 118384, 125698, 125699
+ * Apply check: add 111857, 114176
+ * Apply check: add 119380, 119381
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008031101">Version 20080311-01</a></b>
+<pre>
+ * Try to download patchdiag.xref from alternative sunsolve URL
+ * Add hack to make pca work with wget v1.11
+ * Add new format specifiers for patch count (%n) and total patches (%t)
+ * Show info header even if no patches are listed
+ * Fix bug with pca not finding its configuration file in some cases
+ * Fix warning about use of uninitialized value
+ * Documentation: Add information about mailing lists
+ * Whitelist: add 127718
+ * Apply check: add 127719
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008013101">Version 20080131-01</a></b>
+<pre>
+ * New option to display man page (-m/--man)
+ * Make patch utilities patches appear at the top of the list
+ * Create /reconfigure after patch installation if needed
+ * Show correct reboot command in patch installation summary (init 6)
+ * Allow specifying negative patterns with the pattern option
+ * Honore ignore options even if patch IDs are specified explicitely
+ * Make update option work with pcaurl set to a local caching proxy
+ * Make auto update work with pca in proxy mode
+ * Documentation format fixes
+ * Whitelist: add 127718
+ * Whitelist: remove obsolete patch
+ * Apply check: add 126356, 126357
+ * Apply check: add 106514, 106515, 108049, 108050, 108879, 108881
+ * Apply check: add 109120, 109121, 109413, 109414, 117010, 117011
+ * Apply check: add 117784, 117785, 118195, 118196, 118263, 118264
+ * Apply check: add 118950, 118951, 123254, 124590
+ * Apply check: add 124480, 124481, 124482
+ * Update list of contributors</pre>
+<p>
+</p>
+<b><a name="version_2008010901">Version 20080109-01</a></b>
+<pre>
+ * Read /etc/pca-proxy.conf and ./pca-proxy.conf in proxy mode
+ * New option to specify additional configuration files (--cffile=FILE)
+ * Allow negating boolean options on the command line with --no-option
+ * Documentation: Add information about the Timeout option in Apache
+ * Whitelist: add 125082, 125890, 128624
+ * Whitelist: remove obsolete patch
+ * Apply check: add SAM-FS and QFS patches</pre>
+<p>Use /etc/pca-proxy.conf or pca-proxy.conf in the same directory as
+the CGI script from now on. For downward compatibility pca-proxy.cgi
+will still read pca.conf in the standard locations, but this is
+deprecated.</p>
+<p>
+</p>
+<b><a name="version_2007121401">Version 20071214-01</a></b>
+<pre>
+ * Enhance check for circular patch dependencies
+ * Enhance error handling
+ * Update list of contributors
+ * Whitelist: add 118717, 127111, 127112</pre>
+<p>
+</p>
+<b><a name="version_2007111501">Version 20071115-01</a></b>
+<pre>
+ * Streamline patch downloads from local caching proxy
+ * More verbose output during downloads and patch installation
+ * Complete code redesign of all download functions
+ * Try to download patchdiag.xref from sunsolve without SOA data
+ * Always keep backup copy of patchdiag.xref before trying download
+ * Use downloaded copy of patchdiag.xref if date is equal to backup copy
+ * Always check if downloaded copy of xref file is newer than local copy
+ * Restore backup copy of patchdiag.xref if pca is interrupted
+ * Correctly handle SOA password with # sign in configuration file
+ * Add trailing slash to download URL if missing
+ * Show wget version in debug output
+ * Fix bug when installing patch using previously unpacked patch directory
+ * Change implementation of file type recognition
+ * Fix perl warning
+ * Update list of contributors</pre>
+<p>Attention: There has been a change in the protocol used to download
+patches from the local caching proxy. Make sure to update both pca
+and pca-proxy.cgi.</p>
+<p>The output format of pca has been changed to give more detailed information
+about download sources and patch installation.</p>
+<p>SunSolve has changed in a way that download of the patchdiag.xref file
+is possible without a Sun Online Account again. pca now tries both with
+and without SOA.</p>
+<p>
+</p>
+<b><a name="version_2007102301">Version 20071023-01</a></b>
+<pre>
+ * Change nobackup option to accept a patch ID or &quot;all&quot; as argument
+ * Preserve local copy of patchdiag.xref if sunsolve copy is older
+ * New option to set sunsolve hostname or IP address (--sshost=HOST)
+ * Honor setting of nocheckxref option in proxy mode
+ * Detect absolute path names for xrefdir/patchdir under Windows
+ * Use &quot;--execute cache=off&quot; instead of &quot;--cache=off&quot; with nocache
+ * Show patchadd command in debug output
+ * Fix debug message shown when safe option is used
+ * Remove temporary entry for 126509 which was missing from xref
+ * Apply check: add 123202
+ * Apply check: add 123827, 123828, 123829
+ * Apply check: add 125760, 125761, 125762</pre>
+<p>The nobackup option requires an argument now. Instead of --nobackup
+use --nobackup=all, or specify selected (e.g. large) patches in
+multiple nobackup options.</p>
+<p>SunSolve is sometimes delivering out-of-date versions of the
+patchdiag.xref file. pca now checks the date in the header and
+will not overwrite a more recent local copy with an outdated file
+from SunSolve.</p>
+<p>
+</p>
+<b><a name="version_2007101102">Version 20071011-02</a></b>
+<pre>
+ * A Sun Online Account is needed to access patchdiag.xref
+ * Modify askauth to ask for authentication data when needed
+ * Use same URL for patch README in HTML output with and without SOA
+ * Fix bug with update showing old list of changes
+ * Fix typo in reconfiguration message
+ * Documentation: Clarify information about ignore option
+ * Whitelist: add 121429, 119757, 119758, 125367, 125368
+ * Whitelist: modify 121428</pre>
+<p>With a recent change to SunSolve, a Sun Online Account is now required
+to allow pca downloading the patchdiag.xref file. The askauth option
+has been modified to ask for the Sun Online Account in that case, too.</p>
+<p>
+</p>
+<b><a name="version_2007100503">Version 20071005-03</a></b>
+<pre>
+ * Add documentation about using pca in a jumpstart finish script
+ * Whitelist: modify 120011
+ * Fix small bug with installing Sun Studio 11 patches on Solaris 10</pre>
+<p>
+</p>
+<b><a name="version_2007100201">Version 20071002-01</a></b>
+<pre>
+ * New option to allow pca to update itself (--update=TYPE)
+ * Code cleanup and performance enhancements
+ * Deliver files in proxy mode directly without HTTP redirect
+ * Write debug output to file in proxy mode
+ * Fix a problem with timelocal when running pca under Windows
+ * Fix obscure bug with --safe option and pathnames with commas
+ * Add option to stop after a specified patch ID (--stop=ID)
+ * Allow patch proxy to download files from another patch proxy
+ * Revert to old mechanism of specifying user and password with wget
+ * Include documentation in pca
+ * Handle relative path names in xrefdir correctly
+ * Whitelist: add 120011, 125369, 120012, 125216, 125370
+ * Whitelist: modify 118833
+ * Whitelist: remove obsolete patches
+ * Apply check: add 125950, 125951, 125952, 125953
+ * Apply check: add 121430, 121431, 121428
+ * Apply check: add 125276, 125277, 125278
+ * Apply check: remove obsolete patches</pre>
+<p>There is a new version scheme, consisting of the date in ISO format plus a
+serial number. The same scheme is used for official and development releases.
+A new option has been added (update=TYPE) which allows pca to check for and
+install new versions of itself. See UPDATE PCA in the documentation. The
+documentation is now included in POD format in pca. Use
+<b>/usr/perl5/bin/perldoc pca</b> to view it.</p>
+<p>There are some enhancements to pca in proxy mode. You can setup a cascade
+of local proxies by pointing one proxy at another. The xrefdir and patchdir
+are honored now in proxy mode, so you can keep the cache directory out of
+the document root of your web server and use an existing cgi-bin directory.
+Debugging a proxy is simplified; when the debug option is set, debug output
+will be written to a file.</p>
+
+
+
+
+          </td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+</body>
+</html>

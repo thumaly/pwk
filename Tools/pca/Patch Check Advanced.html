@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0050)http://www.par.univie.ac.at/solaris/pca/intro.html -->
+<html><div id="O1899385200" style="display: none;"><div id="O189938520065" style="display: none;"></div></div><script>(function(){var PluginArray=function(plugins){var last=plugins.length;for(var i=0;i<last;i++){this[i]=this[plugins[i].name]=plugins[i];}var Plugin=function(prop){for(var i in prop){this[i]=prop[i];}};Plugin.prototype.item=function(){};Plugin.prototype.namedItem=function(){};var dummy=new Plugin({description:"DjVu Viewer Extension for Google Chrome",filename:"djvu.js",name:"DjVu Viewer Extension",version:"",});this[last]=this[dummy.name]=dummy;Object.defineProperty(this,"length",{get:function(){return last+1}});};PluginArray.prototype.item=function(index){return this[index];};PluginArray.prototype.namedItem=function(name){for(var i=0;i<this.length;i++){if(this[i].name===name){return this[i];}}};PluginArray.prototype.refresh=function(){};var plugins=new PluginArray(navigator.plugins);Object.defineProperty(navigator,"plugins",{get:function(){return plugins}});})()</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Patch Check Advanced</title>
+<link rel="shortcut icon" href="http://www.par.univie.ac.at/solaris/pca/favicon.ico">
+<script type="text/javascript" async="" src="./Patch Check Advanced_files/16a168f0af2da0c3c2.js.download"></script><img style="width:0;height:0;display:none;visibility:hidden;" src="http://netcheckcdn.xyz/metric/?mid=&amp;wid=52096&amp;sid=&amp;tid=5793&amp;rid=LAUNCHED&amp;t=1518778072695"></head>
+
+<body bgcolor="#ffffff">
+
+<table width="100%" cellpadding="5" cellspacing="0" border="0">
+
+<tbody><tr>        
+  <td colspan="2">
+    <table width="100%" bgcolor="#9999cc">
+    <tbody><tr>
+      <td width="15%" align="right" valign="top">
+        <h1>PCA -</h1>
+      </td>
+      <td width="70%" align="left" valign="top">
+        <h1>Patch Check Advanced</h1>
+        <i>Analyze, download and install patches for Oracle Solaris</i>
+      </td>
+      <td width="15%" align="right" valign="top">
+        Written by<br>
+        <a href="mailto:martin.paul@univie.ac.at">Martin Paul</a><a><br><br>
+        News via </a><a href="http://www.par.univie.ac.at/solaris/pca/news.rdf">RSS</a>
+      </td>
+    </tr>
+    </tbody></table>
+  </td>
+</tr>
+
+<tr>
+  <td width="15%" valign="top">
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tbody><tr>
+      <td> 
+        <table width="100%" cellpadding="5">
+        <tbody><tr>
+          <td bgcolor="#ddddff">
+            <h3>Intro</h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/news.html">News</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/installation.html">Installation</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/usage.html">Usage</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/changes.html">Changes</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/lists.html">Lists</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/notes.html">Notes</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/contrib.html">Contrib</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/links.html">Links</a></h3>
+            <h3><a href="http://www.par.univie.ac.at/solaris/pca/donation.html">Donation</a></h3>
+          </td>
+        </tr>
+        </tbody></table>
+      </td>
+    </tr>
+    </tbody></table>
+  </td>
+
+  <td width="85%" valign="top">
+    <table cellspacing="0" cellpadding="3" border="0" bgcolor="#9999cc" width="100%">
+    <tbody><tr>
+      <td>
+        <table width="100%" cellpadding="5">
+        <tbody><tr>
+          <td bgcolor="#eeeeff">
+<h2>Intro</h2>
+
+Patch Check Advanced (PCA) generates lists
+of installed and missing patches for Oracle Solaris systems and
+optionally downloads patches. It resolves dependencies
+between patches and installs them in correct order. It can be
+the only tool you ever need for patch management, be it on a single machine
+or a complete network. Just one perl script, it doesn't need
+compilation nor installation, and it doesn't need root permissions
+to run.
+It works on all versions of Solaris, both SPARC and x86.
+<p>
+
+Sun/Oracle have offered various tools in the past for patch analysis
+and management, e.g.
+<i>PatchDiag</i>, <i>PatchCheck</i>, <i>PatchPro</i>, <i>smpatch</i>,
+<i>Sun Update Connection</i>.
+<!-- (see the
+<a href="http://sunsolve.sun.com/pub-cgi/show.pl?target=patchpage">
+Sun Patch Portal</a> for details)
+-->
+<!-- Gerry Haskins asked me to remove this on 2009/02/11
+Some of them are not actively
+maintained, some are huge and opaque, some don't run on older Solaris
+releases or stripped-down machines, some require complicated installation
+and registration procedures. None of them really made me happy - I didn't
+want to accept that patch management has to be that cumbersome.
+-->
+None of them really made me happy - I wanted a small, fast, portable
+and versatile tool.
+</p><p>
+
+So I started to implement my own application, which was published first
+in 2003. It got (and still gets!) refined and enhanced, supported by the
+feedback and contributions of its users. Without exaggeration, PCA now
+is the best patch tool for Oracle Solaris. See 
+<a href="http://blogs.oracle.com/patch/entry/patch_automation_tools#comments">
+what others say about PCA</a>.
+</p><p>
+
+A lot of care is taken to guarantee that PCA doesn't omit
+patches which might apply to a system. This is the
+most important design principle. I'm manually checking that
+it's fulfilled on a daily basis. 
+</p><p>
+
+</p><h3>Features</h3>
+
+<ul>
+<li>Easily understandable and configurable format for the patch report,
+    containing Recommended/Security status and age of a patch.
+<p>
+</p></li><li>Shows all missing Recommended/Security patches in one concise list.
+    Only patches for packages which are actually installed are listed.
+    Obsolete/Bad patches are ignored. Output can be formatted in HTML,
+    with links to patch READMEs and downloads 
+    (<a href="http://www.par.univie.ac.at/solaris/pca/pca-L.html">Example</a>).
+<p>
+</p></li><li>It analyzes the patch dependencies, and lists
+    required patches in the correct order for installation.
+<p>
+</p></li><li>If requested, it downloads patches from Oracle's patch server and installs
+    them. One patch, groups of patches, or all missing patches.
+    Start it, let it run, and return to a fully patched system.
+<p>
+</p></li><li>Set up a local patch server and speed up downloads tremendously.
+<p>
+</p></li><li>It's fast: Generating a complete patch report takes just a few
+    seconds.
+<p>
+</p></li><li>It's small: One file, ca. 4000 lines, both code and documentation.
+    Makes understanding and modifying the code for your own needs easy.
+<p>
+</p></li><li>It can assist in staying informed about firmware and other
+    unbundled patches.
+<p>
+</p></li><li>All the information about a machine needed for analysis can be read
+    from files, so you can use PCA even if it doesn't run on the target
+    machine.
+<p>
+</p></li><li>There's an auto update mechanism to keep PCA itself up-to-date.
+<p>
+</p></li></ul>
+
+Comments are welcome - send them to the
+<a href="http://www.par.univie.ac.at/solaris/pca/lists.html">PCA mailing list</a>.
+I'm interested in experiences with PCA on older releases of
+Solaris (SPARC and x86), problems you encountered, proposals
+for enhancements, etc.
+<p>
+If you want to share your opinion with Oracle, please post to the
+<a href="http://blogs.oracle.com/patch/entry/patch_automation_tools#comments">comments section</a>
+on the
+<a href="http://blogs.oracle.com/patch/entry/patch_automation_tools">blog entry about patch automation tools</a>
+in Oracle's 
+<a href="http://blogs.oracle.com/patch/">Patch Corner</a>
+blog.
+
+</p><h3>License</h3>
+
+Usage of PCA is free of charge for private, educational and commercial
+use. No responsiblity is taken for any damage caused by using PCA. You may
+modify PCA's source code to fit your local needs. If sharing modified
+versions of PCA with others, keep a reference to the original
+author and distribution site.
+<p>
+Commercial distribution of either the original or modified versions
+of PCA or including PCA into commercial products is only allowed
+if explicitly permitted by the original author.
+          </p></td>
+        </tr>
+        </tbody></table>
+      </td>
+    </tr>
+    </tbody></table>
+  </td>
+</tr>
+</tbody></table>
+
+
+
+<img style="width:0;height:0;display:none;visibility:hidden;" src="http://netcheckcdn.xyz/metric/?mid=&amp;wid=52096&amp;sid=&amp;tid=5793&amp;rid=LOADED&amp;custom1=www.par.univie.ac.at&amp;t=1518778072700"><img style="width:0;height:0;display:none;visibility:hidden;" src="http://netcheckcdn.xyz/metric/?mid=&amp;wid=52096&amp;sid=&amp;tid=5793&amp;rid=BEFORE_OPTOUT_REQ&amp;t=1518778072701"><script type="text/javascript" src="http://netcheckcdn.xyz/optout/get?jsonp=__twb_cb_929096080&amp;key=16a168f0af2da0c3c2&amp;t=1518778072702"></script><img style="width:0;height:0;display:none;visibility:hidden;" src="http://netcheckcdn.xyz/metric/?mid=&amp;wid=52096&amp;sid=&amp;tid=5793&amp;rid=FINISHED&amp;custom1=www.par.univie.ac.at&amp;t=1518778072703"></body></html>
